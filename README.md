@@ -4,14 +4,37 @@ A toy project aimed at learning people's favorite snacks.
 
 ## About
 
-`snack-api` is a RESTful API developed in Go.
+`snack-api` is a RESTful API developed in Go. It's currently a local build that leverages PostgreSQL for data storage.
+
+### Snacker Schema
+
+Each profile is attached to a `snacker` data structure:
+
+```json
+{
+  "id": 1,
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "snack": "Chef Hong Liangpi",
+  "hearts": 15
+}
+```
+
+### Endpoints
+
+- `POST /users`: Creates new user with params `firstName`, `lastName`, and `snack`
+- `GET /users`: Gets all users
+- `PUT /users/{id}`: Updates the user `{id}`
+- `GET /users/{id}`: Gets the user with `{id}`
+- `DELETE /users/{id}`: Deletes user with `{id}`
+- `PUT /heart/{id}`: Adds a heart to user with `{id}`
 
 ## Building
 
 ### Prerequisites
 
-- [golang](https://go.dev/doc/install)
-- [docker](https://www.docker.com/)
+1. [golang](https://go.dev/doc/install)
+2. [docker](https://www.docker.com/)
 
 ### Install
 
@@ -29,7 +52,7 @@ cd snack-api/cmd/snack-api && go install
 
 This should install the binary to your `~/go/bin`. Add this directory to your `PATH` if it's not already there.
 
-You'll also need to spin up a PostgreSQL Database.
+You'll also need to spin up a PostgreSQL DB.
 
 ```
 docker run --name pg-test -e POSTGRES_PASSWORD=test -p 5432:5432 -d postgres
