@@ -10,8 +10,8 @@ A toy project aimed at learning people's favorite snacks.
 
 ### Prerequisites
 
-[golang](https://go.dev/doc/install)
-[docker](https://www.docker.com/)
+- [golang](https://go.dev/doc/install)
+- [docker](https://www.docker.com/)
 
 ### Install
 
