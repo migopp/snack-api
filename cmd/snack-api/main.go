@@ -7,12 +7,26 @@ import (
 )
 
 func main() {
+	// init db
+	postgresStore, err := api.CreatePostgresStore()
+	defer postgresStore.Close()
+	if err != nil {
+		log.Fatal("Error: ", err)
+	}
+	err = postgresStore.CreateSnackerTable()
+	if err != nil {
+		log.Fatal("Error: ", err)
+	}
+
+	// create server
 	server := api.Server{
 		IP:    "localhost",
 		Port:  8000,
-		Store: api.CreateMockStore(),
+		Store: postgresStore,
 	}
-	if err := server.Run(); err != nil {
-		log.Fatal("Error:", err)
+
+	// spin
+	if err = server.Run(); err != nil {
+		log.Fatal("Error: ", err)
 	}
 }

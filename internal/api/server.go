@@ -155,10 +155,10 @@ func (s *Server) heartHandler(w http.ResponseWriter, r *http.Request) (error, in
 	return nil, http.StatusOK
 }
 
-func parseURLID(r *http.Request) (uint64, error) {
-	rawID, err := strconv.ParseUint(chi.URLParam(r, "id"), 10, 64)
+func parseURLID(r *http.Request) (uint32, error) {
+	rawID, err := strconv.ParseUint(chi.URLParam(r, "id"), 10, 32)
 	if err != nil {
 		return 0, err
 	}
-	return uint64(rawID), nil
+	return uint32(rawID), nil
 }
